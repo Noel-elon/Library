@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Course {
     public String courseName;
+    public File file;
 
     public String getCourseName() {
         return courseName;
@@ -19,12 +20,12 @@ public class Course {
         return files;
     }
 
-    public void setFiles(List<File> files) {
-        this.files = files;
+    public void setFile(File file) {
+        this.file = file;
     }
 
-    public Course(String courseName, List<File> files) {
-        this.files = files;
+    public Course(String courseName, File file) {
+        this.file = file;
         this.courseName = courseName;
     }
 }

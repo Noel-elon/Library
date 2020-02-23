@@ -4,22 +4,28 @@ import java.util.List;
 
 public class Level {
     public void setLevel(String level) {
-        this.level = level;
+        this.levelname = level;
     }
 
-    public String level;
+
+    public String levelname;
     public List<Course> subjects;
+    public Course course;
+
+    public String getLevelname() {
+        return levelname;
+    }
 
     public List<Course> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(List<Course> subjects) {
-        this.subjects = subjects;
+    public void setSubject(Course subject) {
+        this.course = subject;
     }
 
-    public Level(String level,List<Course> subjects) {
-        this.subjects = subjects;
-        this.level = level;
+    public Level(String level,Course subject) {
+        this.course = subject;
+        this.levelname = level;
     }
 }
