@@ -18,8 +18,10 @@ public class FileViewModel extends ViewModel {
     List<File> files;
 
 
-    public void uploadFile(Uri fileUri) {
-        repository.uploadFile(fileUri);
+    public String uploadFile(Uri fileUri) {
+       String url = repository.uploadFile(fileUri);
+
+       return url;
     }
 
     public void uploadLevel(Level level) {

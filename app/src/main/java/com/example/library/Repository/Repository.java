@@ -3,6 +3,7 @@ package com.example.library.Repository;
 import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,9 +39,12 @@ public class Repository {
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
 
-    public void uploadFile(Uri fileUri) {
+    public String uploadFile(Uri fileUri) {
         StorageReference storageReference = storage.getReference();
-        storageReference.child(level.getLevelname()).child(course.getCourseName()).putFile(fileUri);
+        storageReference.child(level.getLevelname()).child(course.getCourseName()).child(file.getFileName()).putFile(fileUri);
+        StorageReference downloadref = storageReference.child(level.getLevelname()).child(course.getCourseName()).child(file.getFileName());
+        String downloadUrl = downloadref.getDownloadUrl().toString();
+        return downloadUrl;
 
     }
 
@@ -48,15 +52,16 @@ public class Repository {
         firestore.collection("Uploads").add(level).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
+                Log.d("Upload level::", documentReference.getPath());
 
             }
         })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
-            }
-        });
+                    }
+                });
 
     }
 
@@ -65,18 +70,18 @@ public class Repository {
                 .document(level.getLevelname())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-if (task.isSuccessful()){
-    courses = new ArrayList<>();
-    Course course = task.getResult().toObject(Course.class);
-    courses.add(course);
-}
-            }
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            courses = new ArrayList<>();
+                            Course course = task.getResult().toObject(Course.class);
+                            courses.add(course);
+                        }
+                    }
 
-        });
+                });
 
-return courses;
+        return courses;
 
     }
 
@@ -88,9 +93,9 @@ return courses;
 
     }
 
-    public String getFileUrl(File file){
+    public String getFileUrl(File file) {
 
-       String url = file.getFileUrl();
+        String url = file.getFileUrl();
         return url;
     }
 
