@@ -13,9 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileViewModel extends ViewModel {
-    private Repository repository;
+    private Repository repository = new Repository();
     List<Course> courses;
     List<File> files;
+
+    public FileViewModel(){}
+
+
 
 
     public String uploadFile(Uri fileUri) {

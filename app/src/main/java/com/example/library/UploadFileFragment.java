@@ -43,16 +43,25 @@ public class UploadFileFragment extends Fragment {
     Course subject;
     Level level;
     File file;
+    String name;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        levelspinner = getActivity().findViewById(R.id.spinnerLevel);
-        courseName = getActivity().findViewById(R.id.courseET);
-        fileName = getActivity().findViewById(R.id.filenameTV);
-        upload = getActivity().findViewById(R.id.uploadBut);
-        uploadFile = getActivity().findViewById(R.id.uploadFileBut);
+
+
+        View rootview = inflater.inflate(R.layout.fragment_upload_file, container, false);
+
+        levelspinner = rootview.findViewById(R.id.spinnerLevel);
+        courseName = rootview.findViewById(R.id.courseET);
+        fileName = rootview.findViewById(R.id.filenameTV);
+        upload = rootview.findViewById(R.id.uploadBut);
+        uploadFile = rootview.findViewById(R.id.uploadFileBut);
+        file = new File();
+        subject = new Course();
+        level = new Level();
+        fileViewModel = new FileViewModel();
 
 
         List<String> spinnerArray = new ArrayList<String>();
@@ -63,7 +72,7 @@ public class UploadFileFragment extends Fragment {
         spinnerArray.add("Year five");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
+                this.getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -81,15 +90,24 @@ public class UploadFileFragment extends Fragment {
         uploadFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = fileViewModel.uploadFile(uri);
-                file.setFileName(fileName.getText().toString());
-                file.setFileUrl(url);
+                Log.d("THE URI", uri.toString());
+                Log.d("THE Name", name);
+
+
+                file.setFileName(name);
+
 
                 subject.setCourseName(courseName.getText().toString());
-                subject.setFile(file);
 
-                level.setSubject(subject);
+
                 level.setLevel(selectedLevel);
+
+
+                String url = fileViewModel.uploadFile(uri);
+                file.setFileUrl(url);
+                subject.setFile(file);
+                level.setSubject(subject);
+
 
                 fileViewModel.uploadLevel(level);
 
@@ -98,7 +116,7 @@ public class UploadFileFragment extends Fragment {
         });
 
 
-        return inflater.inflate(R.layout.fragment_upload_file, container, false);
+        return rootview;
 
 
     }
@@ -128,10 +146,13 @@ public class UploadFileFragment extends Fragment {
         switch (requestCode) {
             case 0:
                 if (resultCode == RESULT_OK) {
+
                     // Get the Uri of the selected file
                     uri = data.getData();
-                    String name = getFilename(uri);
+                    name = getFilename(uri);
                     fileName.setText(name);
+                    Log.d("THE URI", uri.toString());
+
 
                 }
                 break;

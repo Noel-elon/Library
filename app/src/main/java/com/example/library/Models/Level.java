@@ -28,4 +28,5 @@ public class Level {
         this.course = subject;
         this.levelname = level;
     }
+    public Level(){}
 }

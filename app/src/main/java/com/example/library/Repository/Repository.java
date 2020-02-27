@@ -29,9 +29,9 @@ import java.util.List;
 
 
 public class Repository {
-    Level level;
-    Course course;
-    File file;
+    Level level = new Level();
+    Course course = new Course();
+    File file = new File();
     List<Course> courses;
     List<File> files;
 
@@ -39,8 +39,14 @@ public class Repository {
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
 
+    public Repository(){}
+
+
     public String uploadFile(Uri fileUri) {
         StorageReference storageReference = storage.getReference();
+
+        Log.d("THE course", course.getCourseName());
+        Log.d("THE file", file.getFileName());
         storageReference.child(level.getLevelname()).child(course.getCourseName()).child(file.getFileName()).putFile(fileUri);
         StorageReference downloadref = storageReference.child(level.getLevelname()).child(course.getCourseName()).child(file.getFileName());
         String downloadUrl = downloadref.getDownloadUrl().toString();

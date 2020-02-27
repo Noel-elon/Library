@@ -9,6 +9,8 @@ public class File {
         this.fileName = fileName;
     }
 
+    public File(){}
+
     public String getFileUrl() {
         return fileUrl;
     }
