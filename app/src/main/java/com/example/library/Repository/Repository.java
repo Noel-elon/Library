@@ -44,6 +44,9 @@ public class Repository {
 
     public String uploadFile(Uri fileUri) {
         StorageReference storageReference = storage.getReference();
+        Level level = new Level();
+        Course course = new Course();
+        File file = new File();
 
         Log.d("THE course", course.getCourseName());
         Log.d("THE file", file.getFileName());
