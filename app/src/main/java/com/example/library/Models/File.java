@@ -1,8 +1,8 @@
 package com.example.library.Models;
 
 public class File {
-    public String fileUrl;
-    public String fileName;
+    private String fileUrl;
+    private String fileName;
 
     public File( String fileName, String fileUrl) {
         this.fileUrl = fileUrl;

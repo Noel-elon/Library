@@ -8,9 +8,9 @@ public class Level {
     }
 
 
-    public String levelname;
-    public List<Course> subjects;
-    public Course course;
+    private static String levelname;
+    private List<Course> subjects;
+    private  Course course;
 
     public String getLevelname() {
         return levelname;

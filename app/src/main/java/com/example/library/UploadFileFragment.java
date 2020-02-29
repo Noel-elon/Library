@@ -40,9 +40,9 @@ public class UploadFileFragment extends Fragment {
     int FILE_SELECT_CODE = 0;
     Uri uri;
     FileViewModel fileViewModel;
-    Course subject;
-    Level level;
-    File file;
+    public static Course subject;
+    public static Level level;
+    public static File file;
     String name;
 
 
@@ -62,6 +62,8 @@ public class UploadFileFragment extends Fragment {
         subject = new Course();
         level = new Level();
         fileViewModel = new FileViewModel();
+
+
 
 
         List<String> spinnerArray = new ArrayList<String>();

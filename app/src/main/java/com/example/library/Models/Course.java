@@ -3,19 +3,21 @@ package com.example.library.Models;
 import java.util.List;
 
 public class Course {
-    public String courseName;
-    public File file;
+    private String courseName;
+    private File file;
 
     public String getCourseName() {
         return courseName;
     }
-    public Course(){};
+
+    public Course() {
+    }
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
-    public List<File> files;
+    private List<File> files;
 
     public List<File> getFiles() {
         return files;

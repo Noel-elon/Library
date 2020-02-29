@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import com.example.library.Models.Course;
 import com.example.library.Models.File;
 import com.example.library.Models.Level;
+import com.example.library.UploadFileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,9 +30,10 @@ import java.util.List;
 
 
 public class Repository {
-    Level level = new Level();
-    Course course = new Course();
-    File file = new File();
+    Level level = UploadFileFragment.level;
+    Course course = UploadFileFragment.subject;
+    File file = UploadFileFragment.file;
+
     List<Course> courses;
     List<File> files;
 
@@ -39,15 +41,14 @@ public class Repository {
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
 
-    public Repository(){}
+    public Repository() {
+    }
 
 
     public String uploadFile(Uri fileUri) {
         StorageReference storageReference = storage.getReference();
-        Level level = new Level();
-        Course course = new Course();
-        File file = new File();
 
+        Log.d("THE level", level.getLevelname());
         Log.d("THE course", course.getCourseName());
         Log.d("THE file", file.getFileName());
         storageReference.child(level.getLevelname()).child(course.getCourseName()).child(file.getFileName()).putFile(fileUri);
@@ -58,19 +59,14 @@ public class Repository {
     }
 
     public void uploadLevel(Level level) {
-        firestore.collection("Uploads").add(level).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        firestore.collection("Uploads").document(level.getLevelname()).collection(course.getCourseName()).document(file.getFileName()).set(file).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Log.d("Upload level::", documentReference.getPath());
+            public void onSuccess(Void aVoid) {
 
             }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+        });
 
-                    }
-                });
+
 
     }
 
