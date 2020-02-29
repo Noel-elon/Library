@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +45,7 @@ public class UploadFileFragment extends Fragment {
     public static Level level;
     public static File file;
     String name;
+    String selectedLevel;
 
 
     @Override
@@ -64,8 +66,6 @@ public class UploadFileFragment extends Fragment {
         fileViewModel = new FileViewModel();
 
 
-
-
         List<String> spinnerArray = new ArrayList<String>();
         spinnerArray.add("Year one");
         spinnerArray.add("Year two");
@@ -74,13 +74,24 @@ public class UploadFileFragment extends Fragment {
         spinnerArray.add("Year five");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this.getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
+                getContext(), android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         levelspinner.setAdapter(adapter);
-        final String selectedLevel = levelspinner.getSelectedItem().toString();
-        final String course = courseName.getText().toString();
+        levelspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedLevel = levelspinner.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+
+            }
+        });
+
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
