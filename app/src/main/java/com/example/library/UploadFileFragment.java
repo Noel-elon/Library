@@ -46,6 +46,7 @@ public class UploadFileFragment extends Fragment {
     public static File file;
     String name;
     String selectedLevel;
+    public static List<String> spinnerArray;
 
 
     @Override
@@ -65,8 +66,7 @@ public class UploadFileFragment extends Fragment {
         level = new Level();
         fileViewModel = new FileViewModel();
 
-
-        List<String> spinnerArray = new ArrayList<String>();
+        spinnerArray = new ArrayList<String>();
         spinnerArray.add("Year one");
         spinnerArray.add("Year two");
         spinnerArray.add("Year three");
