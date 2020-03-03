@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,12 +44,18 @@ holder.levelnameTv.setText(level);
         return levels.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView levelnameTv;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             levelnameTv = itemView.findViewById(R.id.levelnameTV);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            Toast.makeText(view.getContext(), levels.get(position), Toast.LENGTH_SHORT).show();
         }
     }
 }
