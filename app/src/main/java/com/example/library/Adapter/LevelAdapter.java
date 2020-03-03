@@ -9,16 +9,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.library.R;
+import com.example.library.UploadFileFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> {
-private List<String> levels;
-private LayoutInflater layoutInflater;
+public List<String> levels;
+
+    public LevelAdapter(List<String> levels) {
+        this.levels = levels;
+    }
+
+    private LayoutInflater layoutInflater;
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        layoutInflater = LayoutInflater.from(parent.getContext());
+
         View view = layoutInflater.inflate(R.layout.level_item, parent, false );
         return new ViewHolder(view);
     }
