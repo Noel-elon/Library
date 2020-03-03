@@ -73,6 +73,10 @@ public class UploadFileFragment extends Fragment {
         spinnerArray.add("Year four");
         spinnerArray.add("Year five");
 
+
+
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getContext(), android.R.layout.simple_spinner_item, spinnerArray);
 
@@ -194,5 +198,9 @@ public class UploadFileFragment extends Fragment {
         }
         return result;
 
+    }
+
+    public static List<String> getArray(){
+        return spinnerArray;
     }
 }

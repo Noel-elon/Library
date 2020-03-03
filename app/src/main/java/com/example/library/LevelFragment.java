@@ -17,7 +17,7 @@ import java.util.List;
 
 
 public class LevelFragment extends Fragment {
-    List<String> levels;
+   public static List<String> levels;
     LevelAdapter levelAdapter;
 
 
