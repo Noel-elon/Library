@@ -59,7 +59,7 @@ public class Repository {
     }
 
     public void uploadLevel(Level level) {
-        firestore.collection("Uploads").document(level.getLevelname()).collection(course.getCourseName()).document(file.getFileName()).set(file).addOnSuccessListener(new OnSuccessListener<Void>() {
+        firestore.collection("Uploads").document(level.getLevelname()).collection(course.getCourseName()).document(course.getCourseName()).collection(file.getFileName()).document(file.getFileName()).set(file).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
 
@@ -70,17 +70,16 @@ public class Repository {
 
     }
 
-    public List<Course> getCourses(Level level) {
+    public List<Course> getCourses(String levelname) {
         firestore.collection("Uploads")
-                .document(level.getLevelname())
+                .document(levelname)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             courses = new ArrayList<>();
-                            Course course = task.getResult().toObject(Course.class);
-                            courses.add(course);
+
                         }
                     }
 

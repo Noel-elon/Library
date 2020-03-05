@@ -18,6 +18,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
     List<Course> courses;
     LayoutInflater layoutInflater;
 
+
     public CourseAdapter(List<Course> courses) {
         this.courses = courses;
 

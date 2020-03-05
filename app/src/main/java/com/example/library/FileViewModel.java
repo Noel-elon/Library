@@ -32,7 +32,7 @@ public class FileViewModel extends ViewModel {
         repository.uploadLevel(level);
     }
 
-    public List<Course> getCourses(Level level) {
+    public List<Course> getCourses(String level) {
         courses = new ArrayList<>();
         courses = repository.getCourses(level);
 
