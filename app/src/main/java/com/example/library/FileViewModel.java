@@ -14,8 +14,8 @@ import java.util.List;
 
 public class FileViewModel extends ViewModel {
     private Repository repository = new Repository();
-    List<Course> courses;
-    List<File> files;
+    List<String> courses;
+    List<String> files;
 
     public FileViewModel(){}
 
@@ -32,7 +32,7 @@ public class FileViewModel extends ViewModel {
         repository.uploadLevel(level);
     }
 
-    public List<Course> getCourses(String level) {
+    public List<String> getCourses(String level) {
         courses = new ArrayList<>();
         courses = repository.getCourses(level);
 
@@ -40,7 +40,7 @@ public class FileViewModel extends ViewModel {
         return courses;
     }
 
-    public List<File> getFiles(Course course) {
+    public List<String> getFiles(String course) {
         files = new ArrayList<>();
         files = repository.getFiles(course);
         return files;

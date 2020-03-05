@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.model.Document;
 import com.google.firebase.storage.FirebaseStorage;
@@ -34,8 +35,8 @@ public class Repository {
     Course course = UploadFileFragment.subject;
     File file = UploadFileFragment.file;
 
-    List<Course> courses;
-    List<File> files;
+    List<String> courses;
+    List<String> files;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
@@ -59,7 +60,12 @@ public class Repository {
     }
 
     public void uploadLevel(Level level) {
-        firestore.collection("Uploads").document(level.getLevelname()).collection(course.getCourseName()).document(course.getCourseName()).collection(file.getFileName()).document(file.getFileName()).set(file).addOnSuccessListener(new OnSuccessListener<Void>() {
+        firestore.collection("Uploads")
+                .document(level.getLevelname())
+                .collection(level.getLevelname())
+                .document(course.getCourseName())
+                .collection(course.getCourseName())
+                .document(file.getFileName()).set(file).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
 
@@ -67,31 +73,42 @@ public class Repository {
         });
 
 
-
     }
 
-    public List<Course> getCourses(String levelname) {
+    public List<String> getCourses(String levelname) {
         firestore.collection("Uploads")
                 .document(levelname)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            courses = new ArrayList<>();
+                .collection(levelname)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                    String course = documentSnapshot.toString();
+                    courses.add(course);
+                }
+            }
+        });
 
-                        }
-                    }
-
-                });
 
         return courses;
 
     }
 
-    public List<File> getFiles(Course course) {
-        files = new ArrayList<>();
-        files = course.getFiles();
+    public List<String> getFiles(String courseName) {
+        firestore.collection("Uploads").document(level.getLevelname())
+                .collection(level.getLevelname())
+                .document(courseName)
+                .collection(courseName)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot snapshot : task.getResult()) {
+                    String filename = snapshot.toString();
+                    files.add(filename);
+                }
+
+            }
+        });
 
         return files;
 
