@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_levelFragment_to_courseFragment"
             app:destination="@id/courseFragment" />
+        <action
+            android:id="@+id/action_levelFragment_to_uploadFileFragment"
+            app:destination="@id/uploadFileFragment" />
     </fragment>
     <fragment
         android:id="@+id/courseFragment"

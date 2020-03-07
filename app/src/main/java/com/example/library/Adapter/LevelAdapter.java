@@ -22,7 +22,6 @@ import java.util.List;
 public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> {
     public List<String> levels;
    public static Level level;
-    public static List<String> courses = new ArrayList<>();
     public FileViewModel fileViewModel = new FileViewModel();
 
 
@@ -64,15 +63,12 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> 
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            courses = fileViewModel.getCourses(levels.get(position));
             String levelname = levels.get(position);
             Bundle bundle = new Bundle();
             bundle.putString("level", levelname);
             Navigation.findNavController(view).navigate(R.id.action_levelFragment_to_courseFragment, bundle);
 
-            int coursesize = courses.size();
 
-            Toast.makeText(view.getContext(), levels.get(position) + String.valueOf(coursesize), Toast.LENGTH_SHORT).show();
 
         }
     }

@@ -85,6 +85,8 @@ public class Repository {
                 for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                     String course = documentSnapshot.toString();
                     courses.add(course);
+                    Log.d("nwaelugo:::" , courses.get(0));
+
                 }
             }
         });
