@@ -94,9 +94,9 @@ public class Repository {
 
     }
 
-    public List<String> getFiles(String courseName) {
-        firestore.collection("Uploads").document(level.getLevelname())
-                .collection(level.getLevelname())
+    public List<String> getFiles(String levelname, String courseName) {
+        firestore.collection("Uploads").document(levelname)
+                .collection(levelname)
                 .document(courseName)
                 .collection(courseName)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

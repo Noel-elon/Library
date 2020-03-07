@@ -12,8 +12,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        UploadFileFragment uploadFileFragment = new UploadFileFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, uploadFileFragment).commit();
+       // UploadFileFragment uploadFileFragment = new UploadFileFragment();
+        //getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, uploadFileFragment).commit();
 
 
       //  LevelFragment levelFragment = new LevelFragment();

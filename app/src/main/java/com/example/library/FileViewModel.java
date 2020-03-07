@@ -40,9 +40,9 @@ public class FileViewModel extends ViewModel {
         return courses;
     }
 
-    public List<String> getFiles(String course) {
+    public List<String> getFiles(String level,String course) {
         files = new ArrayList<>();
-        files = repository.getFiles(course);
+        files = repository.getFiles(level,course);
         return files;
     }
 

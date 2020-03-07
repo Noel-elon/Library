@@ -1,5 +1,6 @@
 package com.example.library.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,10 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.library.FileViewModel;
 import com.example.library.Models.Course;
+import com.example.library.Models.Level;
 import com.example.library.R;
 
 import java.util.ArrayList;
@@ -18,7 +21,8 @@ import java.util.List;
 
 public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> {
     public List<String> levels;
-    public static List<Course> courses = new ArrayList<>();
+   public static Level level;
+    public static List<String> courses = new ArrayList<>();
     public FileViewModel fileViewModel = new FileViewModel();
 
 
@@ -61,6 +65,11 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> 
         public void onClick(View view) {
             int position = getAdapterPosition();
             courses = fileViewModel.getCourses(levels.get(position));
+            String levelname = levels.get(position);
+            Bundle bundle = new Bundle();
+            bundle.putString("level", levelname);
+            Navigation.findNavController(view).navigate(R.id.action_levelFragment_to_courseFragment, bundle);
+
             int coursesize = courses.size();
 
             Toast.makeText(view.getContext(), levels.get(position) + String.valueOf(coursesize), Toast.LENGTH_SHORT).show();

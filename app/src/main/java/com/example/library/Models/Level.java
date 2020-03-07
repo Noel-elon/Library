@@ -8,7 +8,7 @@ public class Level {
     }
 
 
-    private static String levelname;
+    private  String levelname;
     private List<Course> subjects;
     private  Course course;
 

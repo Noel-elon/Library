@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    tools:ignore="UnusedNavigation"
+    app:startDestination="@id/levelFragment">
+
+    <fragment
+        android:id="@+id/uploadFileFragment"
+        android:name="com.example.library.UploadFileFragment"
+        android:label="fragment_upload_file"
+        tools:layout="@layout/fragment_upload_file" />
+    <fragment
+        android:id="@+id/levelFragment"
+        android:name="com.example.library.LevelFragment"
+        android:label="fragment_level"
+        tools:layout="@layout/fragment_level" >
+        <action
+            android:id="@+id/action_levelFragment_to_courseFragment"
+            app:destination="@id/courseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/courseFragment"
+        android:name="com.example.library.CourseFragment"
+        android:label="fragment_course"
+        tools:layout="@layout/fragment_course" >
+        <action
+            android:id="@+id/action_courseFragment_to_fileFragment"
+            app:destination="@id/fileFragment" />
+        <argument
+            android:name="levelName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fileFragment"
+        android:name="com.example.library.FileFragment"
+        android:label="fragment_file"
+        tools:layout="@layout/fragment_file" >
+        <argument
+            android:name="courseName"
+            app:argType="string" />
+        <argument
+            android:name="levelName"
+            app:argType="string" />
+    </fragment>
+</navigation>

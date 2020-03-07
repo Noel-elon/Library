@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHolder> {
-    List<Course> courses;
+    List<String> courses;
     LayoutInflater layoutInflater;
 
 
-    public CourseAdapter(List<Course> courses) {
+    public CourseAdapter(List<String> courses) {
         this.courses = courses;
 
     }
@@ -35,7 +35,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
     @Override
     public void onBindViewHolder(@NonNull CourseHolder holder, int position) {
         courses = new ArrayList<>();
-        String courseName = courses.get(position).getCourseName();
+        String courseName = courses.get(position);
         holder.courseNameTV.setText(courseName);
 
     }

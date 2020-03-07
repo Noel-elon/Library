@@ -40,6 +40,7 @@ public class LevelFragment extends Fragment {
 
 
 
+
         View view = inflater.inflate(R.layout.fragment_level, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.levelRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
