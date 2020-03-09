@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
 
 import com.example.library.Models.Course;
@@ -35,8 +36,10 @@ public class Repository {
     Course course = UploadFileFragment.subject;
     File file = UploadFileFragment.file;
 
-    List<String> courses;
+
     List<String> files;
+    MutableLiveData<List<String>> mutableLiveDataCourse = new MutableLiveData<>();
+    List<String> courses = new ArrayList<>();
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
@@ -60,6 +63,19 @@ public class Repository {
     }
 
     public void uploadLevel(Level level) {
+
+
+        firestore.collection("Uploads")
+                .document(level.getLevelname())
+                .collection(level.getLevelname())
+                .document(course.getCourseName()).set(course).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+            }
+        });
+
+
         firestore.collection("Uploads")
                 .document(level.getLevelname())
                 .collection(level.getLevelname())
@@ -75,24 +91,32 @@ public class Repository {
 
     }
 
-    public List<String> getCourses(String levelname) {
+    public MutableLiveData<List<String>> getCourses(final String levelname) {
+
         firestore.collection("Uploads")
                 .document(levelname)
                 .collection(levelname)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                    String course = documentSnapshot.toString();
-                    courses.add(course);
-                    Log.d("nwaelugo:::" , courses.get(0));
-
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                        String course = documentSnapshot.toString();
+                        courses.add(course);
+                        mutableLiveDataCourse.setValue(courses);
+                    }
+                } else {
+                    Log.d("the error", task.getException().toString());
                 }
+                Log.d("the names", levelname);
+                Log.d("the first course", String.valueOf(courses.size()));
+
             }
         });
 
+        Log.d("Courses", String.valueOf(courses.size()));
+        return mutableLiveDataCourse;
 
-        return courses;
 
     }
 

@@ -2,6 +2,7 @@ package com.example.library;
 
 import android.net.Uri;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.library.Models.Course;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class FileViewModel extends ViewModel {
     private Repository repository = new Repository();
-    List<String> courses;
+    MutableLiveData<List<String>> courses;
     List<String> files;
 
     public FileViewModel(){}
@@ -32,8 +33,8 @@ public class FileViewModel extends ViewModel {
         repository.uploadLevel(level);
     }
 
-    public List<String> getCourses(String level) {
-        courses = new ArrayList<>();
+    public MutableLiveData<List<String>> getCourses(String level) {
+
         courses = repository.getCourses(level);
 
 

@@ -3,6 +3,8 @@ package com.example.library;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,7 +31,6 @@ public class CourseFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,14 +41,21 @@ public class CourseFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_course, container, false);
 
         String level = getArguments().getString("level");
+        fileViewModel.getCourses(level).observe(getActivity(), new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> strings) {
+                RecyclerView recyclerView = getView().findViewById(R.id.courseRecycler);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                adapter = new CourseAdapter(courses);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
-        courses = fileViewModel.getCourses(level);
-        Log.d("The course=>>", courses.get(0));
+        Log.d("The course=>>", String.valueOf(courses.size()));
 
-        RecyclerView recyclerView = view.findViewById(R.id.levelRecycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new CourseAdapter(courses);
-        recyclerView.setAdapter(adapter);
+
+
         return view;
     }
 }
