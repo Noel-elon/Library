@@ -7,9 +7,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.library.FireStoreLiveData;
 import com.example.library.Models.Course;
 import com.example.library.Models.File;
 import com.example.library.Models.Level;
@@ -18,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -91,34 +95,15 @@ public class Repository {
 
     }
 
-    public MutableLiveData<List<String>> getCourses(final String levelname) {
+    public LiveData<List<String>> getCourses(final String levelname) {
+        CollectionReference collectionReference = firestore.collection("Uploads").document(levelname).collection(levelname);
+        FireStoreLiveData fireStoreLiveData = new FireStoreLiveData(collectionReference, String.class);
 
-        firestore.collection("Uploads")
-                .document(levelname)
-                .collection(levelname)
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                        String course = documentSnapshot.toString();
-                        courses.add(course);
-                        mutableLiveDataCourse.setValue(courses);
-                    }
-                } else {
-                    Log.d("the error", task.getException().toString());
-                }
-                Log.d("the names", levelname);
-                Log.d("the first course", String.valueOf(courses.size()));
-
-            }
-        });
-
-        Log.d("Courses", String.valueOf(courses.size()));
-        return mutableLiveDataCourse;
+        return fireStoreLiveData;
 
 
     }
+
 
     public List<String> getFiles(String levelname, String courseName) {
         firestore.collection("Uploads").document(levelname)

@@ -3,6 +3,7 @@ package com.example.library;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,7 +24,7 @@ import java.util.List;
 public class CourseFragment extends Fragment {
     FileViewModel fileViewModel;
     CourseAdapter adapter;
-    List<String> courses;
+    MutableLiveData<List<String>> courses;
 
 
     public CourseFragment() {
@@ -35,25 +36,26 @@ public class CourseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fileViewModel = new FileViewModel();
-        courses = new ArrayList<>();
+
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_course, container, false);
 
+
         String level = getArguments().getString("level");
+        RecyclerView recyclerView = getView().findViewById(R.id.courseRecycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         fileViewModel.getCourses(level).observe(getActivity(), new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> strings) {
-                RecyclerView recyclerView = getView().findViewById(R.id.courseRecycler);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                adapter = new CourseAdapter(courses);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+
+                adapter = new CourseAdapter(strings);
+
+
             }
         });
-
-        Log.d("The course=>>", String.valueOf(courses.size()));
-
+        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(adapter);
 
 
         return view;
