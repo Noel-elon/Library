@@ -25,6 +25,7 @@ public class CourseFragment extends Fragment {
     FileViewModel fileViewModel;
     CourseAdapter adapter;
     MutableLiveData<List<String>> courses;
+    RecyclerView recyclerView;
 
 
     public CourseFragment() {
@@ -43,19 +44,22 @@ public class CourseFragment extends Fragment {
 
 
         String level = getArguments().getString("level");
-        RecyclerView recyclerView = getView().findViewById(R.id.courseRecycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+
         fileViewModel.getCourses(level).observe(getActivity(), new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> strings) {
-
+                recyclerView = getView().findViewById(R.id.courseRecycler);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 adapter = new CourseAdapter(strings);
+                recyclerView.setAdapter(adapter);
 
 
             }
         });
-        adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
+
+        //adapter.notifyDataSetChanged();
 
 
         return view;

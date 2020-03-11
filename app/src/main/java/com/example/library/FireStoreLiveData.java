@@ -46,4 +46,11 @@ public class FireStoreLiveData<T> extends LiveData<T> {
             }
         }
     };
+
+    @Override
+    protected void onActive() {
+        super.onActive();
+
+        collectionReference.addSnapshotListener(eventListener);
+    }
 }

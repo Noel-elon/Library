@@ -1,6 +1,7 @@
 package com.example.library;
 
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -37,6 +38,7 @@ public class FileViewModel extends ViewModel {
     public LiveData<List<String>> getCourses(String level) {
 
         courses = repository.getCourses(level);
+        Log.d("CourseInView", String.valueOf(courses.getValue().size()));
 
 
         return courses;

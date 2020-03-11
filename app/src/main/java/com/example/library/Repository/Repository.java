@@ -98,6 +98,7 @@ public class Repository {
     public LiveData<List<String>> getCourses(final String levelname) {
         CollectionReference collectionReference = firestore.collection("Uploads").document(levelname).collection(levelname);
         FireStoreLiveData fireStoreLiveData = new FireStoreLiveData(collectionReference, String.class);
+      //  Log.d("CourseInView", String.valueOf(fireStoreLiveData.getValue().toString()));
 
         return fireStoreLiveData;
 
