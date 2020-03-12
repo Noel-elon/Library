@@ -43,10 +43,8 @@ public class FileViewModel extends ViewModel {
         return Repository.getCourses(level);
     }
 
-    public List<String> getFiles(String level,String course) {
-        files = new ArrayList<>();
-        files = repository.getFiles(level,course);
-        return files;
+    public Task<QuerySnapshot> getFiles(String level,String course) {
+        return Repository.getFiles(level,course) ;
     }
 
     public String getFileUrl(File file) {

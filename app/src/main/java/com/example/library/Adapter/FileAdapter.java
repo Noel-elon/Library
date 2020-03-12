@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
-    List<File> files;
+    List<String> files;
     LayoutInflater layoutInflater;
 
-    public FileAdapter(List<File> files) {
+    public FileAdapter(List<String> files) {
         this.files = files;
     }
 
@@ -34,8 +34,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FileHolder holder, int position) {
-        files = new ArrayList<>();
-        String fileName = files.get(position).getFileName();
+        String fileName = files.get(position);
         holder.fileNameTV.setText(fileName);
 
     }
@@ -45,13 +44,18 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
         return files.size();
     }
 
-    public class FileHolder extends RecyclerView.ViewHolder {
+    public class FileHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView fileNameTV;
 
         public FileHolder(@NonNull View itemView) {
             super(itemView);
-
+            itemView.setOnClickListener(this);
             fileNameTV = itemView.findViewById(R.id.fileTV);
+        }
+
+        @Override
+        public void onClick(View view) {
+
         }
     }
 }

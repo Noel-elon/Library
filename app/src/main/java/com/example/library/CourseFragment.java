@@ -31,6 +31,8 @@ public class CourseFragment extends Fragment {
     CourseAdapter adapter;
     List<String> courses;
     RecyclerView recyclerView;
+    public String level;
+    public static Bundle bundle;
 
 
     public CourseFragment() {
@@ -45,7 +47,12 @@ public class CourseFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_course, container, false);
 
-        String level = getArguments().getString("level");
+        level = getArguments().getString("level");
+
+        bundle = new Bundle();
+        bundle.putString("Level", level);
+
+
         recyclerView = view.findViewById(R.id.courseRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -60,13 +67,10 @@ public class CourseFragment extends Fragment {
                 }
                 adapter = new CourseAdapter(courses);
                 recyclerView.setAdapter(adapter);
-
+                adapter.notifyDataSetChanged();
                 Log.d("CourseinFrag", String.valueOf(courses.size()));
             }
         });
-
-
-        //adapter.notifyDataSetChanged();
 
 
         return view;

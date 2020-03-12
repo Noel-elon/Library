@@ -1,13 +1,16 @@
 package com.example.library.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.library.CourseFragment;
 import com.example.library.Models.Course;
 import com.example.library.R;
 
@@ -44,13 +47,23 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
         return courses.size();
     }
 
-    public class CourseHolder extends RecyclerView.ViewHolder {
+    public class CourseHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView courseNameTV;
 
         public CourseHolder(@NonNull View itemView) {
             super(itemView);
-
+            itemView.setOnClickListener(this);
             courseNameTV = itemView.findViewById(R.id.courseTV);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            String courseName = courses.get(position);
+            Bundle bundle = CourseFragment.bundle;
+            bundle.putString("CourseName", courseName);
+            Navigation.findNavController(view).navigate(R.id.action_courseFragment_to_fileFragment, bundle);
+
         }
     }
 }

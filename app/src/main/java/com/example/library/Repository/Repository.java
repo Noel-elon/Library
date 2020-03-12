@@ -29,9 +29,6 @@ public class Repository {
     File file = UploadFileFragment.file;
 
 
-    List<String> files;
-
-
     private static FirebaseStorage storage = FirebaseStorage.getInstance();
     private static FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private static final String COLLECTION_NAME = "Uploads";
@@ -95,24 +92,8 @@ public class Repository {
     }
 
 
-    public List<String> getFiles(String levelname, String courseName) {
-        firestore.collection("Uploads").document(levelname)
-                .collection(levelname)
-                .document(courseName)
-                .collection(courseName)
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot snapshot : task.getResult()) {
-                    String filename = snapshot.toString();
-                    files.add(filename);
-                }
-
-            }
-        });
-
-        return files;
-
+    public static Task<QuerySnapshot> getFiles(String levelname, String courseName) {
+        return Repository.mainColRef().document(levelname).collection(levelname).document(courseName).collection(courseName).get();
     }
 
     public String getFileUrl(File file) {
