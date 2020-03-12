@@ -12,6 +12,7 @@ import com.example.library.Models.File;
 import com.example.library.Models.Level;
 import com.example.library.Repository.Repository;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -23,15 +24,14 @@ public class FileViewModel extends ViewModel {
     LiveData<List<String>> courses;
     List<String> files;
 
-    public FileViewModel(){}
-
-
+    public FileViewModel() {
+    }
 
 
     public String uploadFile(Uri fileUri) {
-       String url = repository.uploadFile(fileUri);
+        String url = repository.uploadFile(fileUri);
 
-       return url;
+        return url;
     }
 
     public void uploadLevel(Level level) {
@@ -43,13 +43,13 @@ public class FileViewModel extends ViewModel {
         return Repository.getCourses(level);
     }
 
-    public Task<QuerySnapshot> getFiles(String level,String course) {
-        return Repository.getFiles(level,course) ;
+    public Task<QuerySnapshot> getFiles(String level, String course) {
+        return Repository.getFiles(level, course);
     }
 
-    public String getFileUrl(File file) {
-        String url = repository.getFileUrl(file);
-        return url;
+    public Task<DocumentSnapshot> getFileObject(String level, String course, String file) {
+
+        return Repository.getFileObject(level, course, file);
     }
 
 

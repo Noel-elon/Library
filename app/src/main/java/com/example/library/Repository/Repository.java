@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -69,7 +70,6 @@ public class Repository {
             }
         });
 
-
         Repository.mainColRef()
                 .document(level.getLevelname())
                 .collection(level.getLevelname())
@@ -96,10 +96,8 @@ public class Repository {
         return Repository.mainColRef().document(levelname).collection(levelname).document(courseName).collection(courseName).get();
     }
 
-    public String getFileUrl(File file) {
-
-        String url = file.getFileUrl();
-        return url;
+    public static Task<DocumentSnapshot> getFileObject(String levelname, String courseName, String fileName) {
+        return Repository.mainColRef().document(levelname).collection(levelname).document(courseName).collection(courseName).document(fileName).get();
     }
 
 
