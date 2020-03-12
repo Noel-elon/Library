@@ -11,6 +11,9 @@ import com.example.library.Models.Course;
 import com.example.library.Models.File;
 import com.example.library.Models.Level;
 import com.example.library.Repository.Repository;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +38,9 @@ public class FileViewModel extends ViewModel {
         repository.uploadLevel(level);
     }
 
-    public LiveData<List<String>> getCourses(String level) {
+    public Task<QuerySnapshot> getCourses(String level) {
 
-        courses = repository.getCourses(level);
-        Log.d("CourseInView", String.valueOf(courses.getValue().size()));
-
-
-        return courses;
+        return Repository.getCourses(level);
     }
 
     public List<String> getFiles(String level,String course) {

@@ -1,37 +1,25 @@
 package com.example.library.Repository;
 
-import android.app.Application;
-import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.library.FireStoreLiveData;
 import com.example.library.Models.Course;
 import com.example.library.Models.File;
 import com.example.library.Models.Level;
 import com.example.library.UploadFileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.model.Document;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,14 +30,20 @@ public class Repository {
 
 
     List<String> files;
-    MutableLiveData<List<String>> mutableLiveDataCourse = new MutableLiveData<>();
-    List<String> courses = new ArrayList<>();
 
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+    private static FirebaseStorage storage = FirebaseStorage.getInstance();
+    private static FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private static final String COLLECTION_NAME = "Uploads";
 
 
     public Repository() {
+    }
+
+
+    public static CollectionReference mainColRef() {
+
+        return firestore.collection(COLLECTION_NAME);
     }
 
 
@@ -68,8 +62,7 @@ public class Repository {
 
     public void uploadLevel(Level level) {
 
-
-        firestore.collection("Uploads")
+        Repository.mainColRef()
                 .document(level.getLevelname())
                 .collection(level.getLevelname())
                 .document(course.getCourseName()).set(course).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -80,7 +73,7 @@ public class Repository {
         });
 
 
-        firestore.collection("Uploads")
+        Repository.mainColRef()
                 .document(level.getLevelname())
                 .collection(level.getLevelname())
                 .document(course.getCourseName())
@@ -95,12 +88,8 @@ public class Repository {
 
     }
 
-    public LiveData<List<String>> getCourses(final String levelname) {
-        CollectionReference collectionReference = firestore.collection("Uploads").document(levelname).collection(levelname);
-        FireStoreLiveData fireStoreLiveData = new FireStoreLiveData(collectionReference, String.class);
-      //  Log.d("CourseInView", String.valueOf(fireStoreLiveData.getValue().toString()));
-
-        return fireStoreLiveData;
+    public static Task<QuerySnapshot> getCourses(final String levelname) {
+        return Repository.mainColRef().document(levelname).collection(levelname).get();
 
 
     }

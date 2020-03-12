@@ -34,7 +34,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
 
     @Override
     public void onBindViewHolder(@NonNull CourseHolder holder, int position) {
-        courses = new ArrayList<>();
         String courseName = courses.get(position);
         holder.courseNameTV.setText(courseName);
 
