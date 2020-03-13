@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.library.Fragments;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.library.Adapter.LevelAdapter;
+import com.example.library.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

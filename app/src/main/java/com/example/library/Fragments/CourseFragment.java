@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.library.Fragments;
 
 import android.os.Bundle;
 
@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 
 import com.example.library.Adapter.CourseAdapter;
 import com.example.library.Adapter.LevelAdapter;
+import com.example.library.FileViewModel;
+import com.example.library.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;

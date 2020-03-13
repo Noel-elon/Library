@@ -9,19 +9,16 @@ import androidx.annotation.NonNull;
 import com.example.library.Models.Course;
 import com.example.library.Models.File;
 import com.example.library.Models.Level;
-import com.example.library.UploadFileFragment;
+import com.example.library.Fragments.UploadFileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.util.List;
 
 
 public class Repository {

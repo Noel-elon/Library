@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.library.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,9 +22,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.library.FileViewModel;
 import com.example.library.Models.Course;
 import com.example.library.Models.File;
 import com.example.library.Models.Level;
+import com.example.library.R;
 import com.example.library.Repository.Repository;
 
 import java.util.ArrayList;

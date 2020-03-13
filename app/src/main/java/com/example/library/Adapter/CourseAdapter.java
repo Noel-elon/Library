@@ -10,16 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.library.CourseFragment;
-import com.example.library.Models.Course;
+import com.example.library.Fragments.CourseFragment;
 import com.example.library.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHolder> {
     List<String> courses;
     LayoutInflater layoutInflater;
+    public static Bundle bundle;
 
 
     public CourseAdapter(List<String> courses) {
@@ -60,7 +59,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
         public void onClick(View view) {
             int position = getAdapterPosition();
             String courseName = courses.get(position);
-            Bundle bundle = CourseFragment.bundle;
+            bundle = CourseFragment.bundle;
             bundle.putString("CourseName", courseName);
             Navigation.findNavController(view).navigate(R.id.action_courseFragment_to_fileFragment, bundle);
 

@@ -1,15 +1,21 @@
 package com.example.library.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.library.FileViewModel;
 import com.example.library.Models.File;
 import com.example.library.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +23,8 @@ import java.util.List;
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
     List<String> files;
     LayoutInflater layoutInflater;
+    public static String fileName;
+    FileViewModel fileViewModel = new FileViewModel();
 
     public FileAdapter(List<String> files) {
         this.files = files;
@@ -25,6 +33,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
     @NonNull
     @Override
     public FileHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.file_item, parent, false);
 
@@ -34,7 +43,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FileHolder holder, int position) {
-        String fileName = files.get(position);
+        fileName = files.get(position);
         holder.fileNameTV.setText(fileName);
 
     }
@@ -54,7 +63,25 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
         }
 
         @Override
-        public void onClick(View view) {
+        public void onClick(final View view) {
+            String levelName = CourseAdapter.bundle.getString("Level");
+            String courseName = CourseAdapter.bundle.getString("CourseName");
+
+            fileViewModel.getFileObject(levelName, courseName, fileName).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                File file = new File();
+
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                    file = task.getResult().toObject(File.class);
+                    String fileUrl = file.getFileUrl();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("URL", fileUrl);
+
+                    Navigation.findNavController(view).navigate(R.id.action_fileFragment_to_openFileFragment, bundle);
+                }
+            });
 
         }
     }

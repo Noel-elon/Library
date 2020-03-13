@@ -8,12 +8,12 @@
 
     <fragment
         android:id="@+id/uploadFileFragment"
-        android:name="com.example.library.UploadFileFragment"
+        android:name="com.example.library.Fragments.UploadFileFragment"
         android:label="fragment_upload_file"
         tools:layout="@layout/fragment_upload_file" />
     <fragment
         android:id="@+id/levelFragment"
-        android:name="com.example.library.LevelFragment"
+        android:name="com.example.library.Fragments.LevelFragment"
         android:label="fragment_level"
         tools:layout="@layout/fragment_level" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/courseFragment"
-        android:name="com.example.library.CourseFragment"
+        android:name="com.example.library.Fragments.CourseFragment"
         android:label="fragment_course"
         tools:layout="@layout/fragment_course" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/fileFragment"
-        android:name="com.example.library.FileFragment"
+        android:name="com.example.library.Fragments.FileFragment"
         android:label="fragment_file"
         tools:layout="@layout/fragment_file" >
         <argument
@@ -46,5 +46,13 @@
         <argument
             android:name="levelName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fileFragment_to_openFileFragment"
+            app:destination="@id/openFileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/openFileFragment"
+        android:name="com.example.library.Fragments.OpenFileFragment"
+        android:label="fragment_open_file"
+        tools:layout="@layout/fragment_open_file" />
 </navigation>
