@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,13 @@ public class OpenFileFragment extends Fragment {
         webView = view.findViewById(R.id.webView);
 
         String Url = getArguments().getString("URL");
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + Url);
 
-        webView.setWebViewClient(new WebViewClient(){
+        String someUrl = "http://docs.google.com/gview?embedded=true&url=";
+        Log.d("The Url", Url);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(Url);
+
+        webView.setWebViewClient(new WebViewClient() {
 
             @Override
             public void onPageFinished(WebView view, String url) {

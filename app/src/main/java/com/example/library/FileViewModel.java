@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +29,15 @@ public class FileViewModel extends ViewModel {
     }
 
 
-    public String uploadFile(Uri fileUri) {
-        String url = repository.uploadFile(fileUri);
+    public Task<UploadTask.TaskSnapshot> uploadFile(Uri fileUri) {
+        Task<UploadTask.TaskSnapshot> upload = repository.uploadFile(fileUri);
+        return upload;
+    }
 
+    public Task<Uri> getDownloadURL() {
+        Task<Uri> url = repository.getDownloadUrl();
         return url;
+
     }
 
     public void uploadLevel(Level level) {

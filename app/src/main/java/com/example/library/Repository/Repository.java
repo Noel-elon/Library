@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 
 public class Repository {
@@ -42,15 +43,26 @@ public class Repository {
     }
 
 
-    public String uploadFile(Uri fileUri) {
+    public Task<UploadTask.TaskSnapshot> uploadFile(Uri fileUri) {
         StorageReference storageReference = storage.getReference();
 
         Log.d("THE level", level.getLevelname());
         Log.d("THE course", course.getCourseName());
         Log.d("THE file", file.getFileName());
-        storageReference.child(level.getLevelname()).child(course.getCourseName()).child(file.getFileName()).putFile(fileUri);
-        StorageReference downloadref = storageReference.child(level.getLevelname()).child(course.getCourseName()).child(file.getFileName());
-        String downloadUrl = downloadref.getDownloadUrl().toString();
+        Task<UploadTask.TaskSnapshot> uploadFile = storageReference.child(level.getLevelname())
+                .child(course.getCourseName())
+                .child(file.getFileName())
+                .putFile(fileUri);
+        return uploadFile;
+    }
+
+    public Task<Uri> getDownloadUrl() {
+        StorageReference storageReference = storage.getReference();
+        StorageReference downloadref = storageReference
+                .child(level.getLevelname())
+                .child(course.getCourseName())
+                .child(file.getFileName());
+        Task<Uri> downloadUrl = downloadref.getDownloadUrl();
         return downloadUrl;
 
     }

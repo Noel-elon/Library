@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -28,6 +29,9 @@ import com.example.library.Models.File;
 import com.example.library.Models.Level;
 import com.example.library.R;
 import com.example.library.Repository.Repository;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,9 +80,6 @@ public class UploadFileFragment extends Fragment {
         spinnerArray.add("Year five");
 
 
-
-
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getContext(), android.R.layout.simple_spinner_item, spinnerArray);
 
@@ -122,13 +123,25 @@ public class UploadFileFragment extends Fragment {
                 level.setLevel(selectedLevel);
 
 
-                String url = fileViewModel.uploadFile(uri);
-                file.setFileUrl(url);
-                subject.setFile(file);
-                level.setSubject(subject);
+                fileViewModel.uploadFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        fileViewModel.getDownloadURL().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                String url = task.getResult().toString();
+                                Log.d("THE fetched url", url);
+                                file.setFileUrl(url);
+                                subject.setFile(file);
+                                level.setSubject(subject);
 
 
-                fileViewModel.uploadLevel(level);
+                                fileViewModel.uploadLevel(level);
+                            }
+                        });
+
+                    }
+                });
 
 
             }
@@ -202,7 +215,7 @@ public class UploadFileFragment extends Fragment {
 
     }
 
-    public static List<String> getArray(){
+    public static List<String> getArray() {
         return spinnerArray;
     }
 }
