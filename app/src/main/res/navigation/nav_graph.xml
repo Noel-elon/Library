@@ -55,4 +55,28 @@
         android:name="com.example.library.Fragments.OpenFileFragment"
         android:label="fragment_open_file"
         tools:layout="@layout/fragment_open_file" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.library.Fragments.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_levelFragment"
+            app:destination="@id/levelFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.library.Fragments.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_levelFragment"
+            app:destination="@id/levelFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
 </navigation>

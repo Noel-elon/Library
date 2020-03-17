@@ -50,6 +50,11 @@ public class Repository {
         return result;
     }
 
+    public Task<AuthResult> loginUser(String email, String password) {
+        Task<AuthResult> result = firebaseAuth.signInWithEmailAndPassword(email, password);
+        return result;
+    }
+
 
     public Task<UploadTask.TaskSnapshot> uploadFile(Uri fileUri) {
         StorageReference storageReference = storage.getReference();

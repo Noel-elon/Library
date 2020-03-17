@@ -32,7 +32,11 @@ public class FileViewModel extends ViewModel {
 
     public Task<AuthResult> registerUser(String email, String password) {
         Task<AuthResult> result = repository.registerUser(email, password);
+        return result;
+    }
 
+    public Task<AuthResult> loginUser(String email, String password) {
+        Task<AuthResult> result = repository.loginUser(email, password);
         return result;
     }
 

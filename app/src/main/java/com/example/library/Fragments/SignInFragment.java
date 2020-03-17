@@ -19,33 +19,31 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
 
-public class SignUpFragment extends Fragment {
-    EditText name, password, email;
-    Button signUp;
+public class SignInFragment extends Fragment {
+    EditText emailEt, passwordEt;
+    Button signIn;
     FileViewModel viewModel;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        name = view.findViewById(R.id.nameET);
-        password = view.findViewById(R.id.passwordET);
-        email = view.findViewById(R.id.emailET);
-        signUp = view.findViewById(R.id.signUpbut);
+        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+        emailEt = view.findViewById(R.id.loginEmailET);
+        passwordEt = view.findViewById(R.id.loginPasswordET);
+        signIn = view.findViewById(R.id.signInbut);
 
 
-        signUp.setOnClickListener(new View.OnClickListener() {
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                if (email.getText() != null && (name.getText() != null) && (password.getText() != null)) {
-                    String emailString = email.getText().toString().trim();
-                    String pword = password.getText().toString().trim();
-                    viewModel.registerUser(emailString, pword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                if ((emailEt.getText() != null) && (passwordEt.getText() != null)) {
+                    String logEmail = emailEt.getText().toString().trim();
+                    String logPass = passwordEt.getText().toString().trim();
+                    viewModel.loginUser(logEmail, logPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Navigation.findNavController(view).navigate(R.id.action_signUpFragment_to_levelFragment);
+                            Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_levelFragment);
                         }
                     });
 
@@ -55,6 +53,7 @@ public class SignUpFragment extends Fragment {
                 }
             }
         });
+
 
         return view;
     }
