@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     tools:ignore="UnusedNavigation"
-    app:startDestination="@id/levelFragment">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/uploadFileFragment"

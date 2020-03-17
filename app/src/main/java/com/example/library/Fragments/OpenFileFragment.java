@@ -1,5 +1,6 @@
 package com.example.library.Fragments;
 
+import android.net.http.SslError;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -29,10 +31,16 @@ public class OpenFileFragment extends Fragment {
 
         String someUrl = "http://docs.google.com/gview?embedded=true&url=";
         Log.d("The Url", Url);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(Url);
 
+
+        webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                super.onReceivedSslError(view, handler, error);
+                handler.proceed();
+            }
 
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -40,7 +48,9 @@ public class OpenFileFragment extends Fragment {
 
 
             }
+
         });
+        webView.loadUrl(Url);
 
 
         return view;

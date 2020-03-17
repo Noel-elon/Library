@@ -6,15 +6,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.library.FileViewModel;
 import com.example.library.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
@@ -34,18 +37,31 @@ public class SignUpFragment extends Fragment {
         password = view.findViewById(R.id.passwordET);
         email = view.findViewById(R.id.emailET);
         signUp = view.findViewById(R.id.signUpbut);
+        viewModel = new FileViewModel();
 
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 if (email.getText() != null && (name.getText() != null) && (password.getText() != null)) {
-                    String emailString = email.getText().toString().trim();
-                    String pword = password.getText().toString().trim();
+                    String emailString = email.getText().toString();
+                    String pword = password.getText().toString();
+                    Log.d("Email & Pass:  ", emailString + pword);
                     viewModel.registerUser(emailString, pword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Navigation.findNavController(view).navigate(R.id.action_signUpFragment_to_levelFragment);
+                            if (task.isSuccessful()) {
+
+                                Navigation.findNavController(view).navigate(R.id.action_signUpFragment_to_levelFragment);
+                            } else {
+                                Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 

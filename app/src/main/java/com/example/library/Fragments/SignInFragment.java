@@ -32,6 +32,7 @@ public class SignInFragment extends Fragment {
         emailEt = view.findViewById(R.id.loginEmailET);
         passwordEt = view.findViewById(R.id.loginPasswordET);
         signIn = view.findViewById(R.id.signInbut);
+        viewModel = new FileViewModel();
 
 
         signIn.setOnClickListener(new View.OnClickListener() {
