@@ -1,10 +1,14 @@
 package com.example.library;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,4 +24,5 @@ public class MainActivity extends AppCompatActivity {
         //getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,levelFragment).commit();
 
     }
+
 }

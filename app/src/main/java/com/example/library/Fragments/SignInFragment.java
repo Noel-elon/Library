@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.library.FileViewModel;
 import com.example.library.R;
@@ -23,6 +24,7 @@ public class SignInFragment extends Fragment {
     EditText emailEt, passwordEt;
     Button signIn;
     FileViewModel viewModel;
+    TextView signUp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,7 +34,16 @@ public class SignInFragment extends Fragment {
         emailEt = view.findViewById(R.id.loginEmailET);
         passwordEt = view.findViewById(R.id.loginPasswordET);
         signIn = view.findViewById(R.id.signInbut);
+        signUp = view.findViewById(R.id.signuptext);
         viewModel = new FileViewModel();
+
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_signUpFragment);
+            }
+        });
 
 
         signIn.setOnClickListener(new View.OnClickListener() {

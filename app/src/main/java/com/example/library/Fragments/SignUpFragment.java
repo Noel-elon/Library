@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.library.FileViewModel;
@@ -20,12 +21,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class SignUpFragment extends Fragment {
     EditText name, password, email;
     Button signUp;
     FileViewModel viewModel;
+    TextView signIn;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
     @Override
@@ -37,7 +41,15 @@ public class SignUpFragment extends Fragment {
         password = view.findViewById(R.id.passwordET);
         email = view.findViewById(R.id.emailET);
         signUp = view.findViewById(R.id.signUpbut);
+        signIn = view.findViewById(R.id.signintext);
         viewModel = new FileViewModel();
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_signUpFragment_to_signInFragment);
+            }
+        });
 
 
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -73,5 +85,13 @@ public class SignUpFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (auth.getCurrentUser() != null) {
+            Navigation.findNavController(getView()).navigate(R.id.action_signUpFragment_to_levelFragment);
+        }
     }
 }

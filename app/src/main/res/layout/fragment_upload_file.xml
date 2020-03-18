@@ -22,7 +22,7 @@
 
             android:layout_marginStart="16dp"
             android:elevation="4dp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_bold"
             android:text="UPLOAD A FILE"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp" />
@@ -52,7 +52,7 @@
                 android:id="@+id/courseET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/poppins_regular"
                 android:hint="Course name here"
                 android:inputType="text"
                 android:textColor="@color/colorPrimary"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@drawable/itembg"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_regular"
             android:hint="File name goes here"
             android:padding="4dp"
             android:textAlignment="center"

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/poppins_bold"
         android:text="HELLO THERE!"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="25sp" />
@@ -36,7 +36,7 @@
             android:id="@+id/nameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_regular"
             android:hint="Name"
             android:inputType="text"
             android:textColor="@color/colorPrimary"
@@ -55,7 +55,7 @@
             android:id="@+id/emailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_regular"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textColor="@color/colorPrimary"
@@ -74,7 +74,7 @@
             android:id="@+id/passwordET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_regular"
             android:hint="Password"
             android:inputType="text"
             android:textColor="@color/colorPrimary"
@@ -90,7 +90,8 @@
         android:background="@drawable/buttonbg"
         android:fontFamily="@font/poppins_semibold"
         android:text="SIGN UP"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
 
     <LinearLayout
@@ -107,6 +108,7 @@
             android:text="Already Registered? " />
 
         <TextView
+            android:id="@+id/signintext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
