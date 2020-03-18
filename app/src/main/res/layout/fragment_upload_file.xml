@@ -1,60 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/layoutbg"
-    tools:context=".Fragments.UploadFileFragment">
-
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
-        android:elevation="4dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="UPLOAD A FILE"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="25sp" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinnerLevel"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-         />
-
-    <EditText
-        android:id="@+id/courseET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/itembg"
-        android:fontFamily="@font/poppins_semibold"
-        android:hint="Course name here"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp" />
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@color/layoutbg"
+        android:orientation="vertical"
+        tools:context=".Fragments.UploadFileFragment">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_marginTop="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="16dp"
+            android:elevation="4dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="UPLOAD A FILE"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/spinnerbg"
+            android:padding="4dp">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerLevel"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/courseTextInput"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <EditText
+                android:id="@+id/courseET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:hint="Course name here"
+                android:inputType="text"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/filenameTV"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_margin="16dp"
             android:background="@drawable/itembg"
             android:fontFamily="@font/poppins_semibold"
             android:hint="File name goes here"
+            android:padding="4dp"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp" />
@@ -62,28 +77,32 @@
         <Button
             android:id="@+id/uploadBut"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/buttonbg"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="SelectFile"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Select File"
+            android:textAllCaps="false"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
+
+        <Button
+            android:id="@+id/uploadFileBut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/buttonbg"
+            android:elevation="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Upload"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
     </LinearLayout>
-
-    <Button
-        android:id="@+id/uploadFileBut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/buttonbg"
-        android:elevation="8dp"
-        android:text="Upload"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
-
-
-</LinearLayout>
+</ScrollView>

@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.3.0'
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+    implementation 'com.google.android.material:material:1.0.0'
 
     // Annotation processor
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

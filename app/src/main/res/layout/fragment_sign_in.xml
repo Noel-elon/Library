@@ -1,33 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.SignInFragment">
+    android:orientation="vertical"
+    tools:context=".Fragments.SignUpFragment">
 
-
-    <EditText
-        android:id="@+id/loginEmailET"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Your email here"
-        android:inputType="textEmailAddress" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="WELCOME BACK!"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/loginPasswordET"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="password here"
-        android:inputType="textPassword" />
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="SIGN IN"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp" />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginemailTextInput"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <EditText
+            android:id="@+id/loginEmailET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginpasswordTextInput"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <EditText
+            android:id="@+id/loginPasswordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:hint="Password"
+            android:inputType="text"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/signInbut"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="Sign In" />
+        android:layout_margin="16dp"
+        android:background="@drawable/buttonbg"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="SIGN UP"
+        android:textColor="@color/white" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Yet to join us? " />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Sign up!"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+    </LinearLayout>
 </LinearLayout>
