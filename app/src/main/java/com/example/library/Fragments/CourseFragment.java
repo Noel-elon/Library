@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.library.Adapter.CourseAdapter;
 import com.example.library.Adapter.LevelAdapter;
@@ -35,6 +36,7 @@ public class CourseFragment extends Fragment {
     RecyclerView recyclerView;
     public String level;
     public static Bundle bundle;
+    ProgressBar progressBar;
 
 
     public CourseFragment() {
@@ -48,7 +50,8 @@ public class CourseFragment extends Fragment {
         fileViewModel = new FileViewModel();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_course, container, false);
-
+        progressBar = view.findViewById(R.id.courseProgBar);
+        progressBar.setVisibility(view.VISIBLE);
         level = getArguments().getString("level");
 
         bundle = new Bundle();
@@ -68,6 +71,7 @@ public class CourseFragment extends Fragment {
                     courses.add(courseName);
                 }
                 adapter = new CourseAdapter(courses);
+                progressBar.setVisibility(View.GONE);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 Log.d("CourseinFrag", String.valueOf(courses.size()));

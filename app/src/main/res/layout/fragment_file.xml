@@ -26,6 +26,14 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp" />
 
+        <ProgressBar
+            android:layout_marginTop="8dp"
+            android:id="@+id/fileProgBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_horizontal"/>
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fileRecycler"

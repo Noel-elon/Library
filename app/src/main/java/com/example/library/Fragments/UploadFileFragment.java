@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class UploadFileFragment extends Fragment {
     String name;
     String selectedLevel;
     public static List<String> spinnerArray;
+    ProgressBar progressBar;
 
 
     @Override
@@ -73,6 +75,8 @@ public class UploadFileFragment extends Fragment {
         subject = new Course();
         level = new Level();
         fileViewModel = new FileViewModel();
+        progressBar = rootview.findViewById(R.id.uploadProgBar);
+        progressBar.setVisibility(View.INVISIBLE);
 
         spinnerArray = new ArrayList<String>();
         spinnerArray.add("Year one");
@@ -112,6 +116,7 @@ public class UploadFileFragment extends Fragment {
         uploadFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 Log.d("THE URI", uri.toString());
                 Log.d("THE Name", name);
 
@@ -128,6 +133,8 @@ public class UploadFileFragment extends Fragment {
                 fileViewModel.uploadFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getContext(), "File Uploaded Succesfully", Toast.LENGTH_SHORT).show();
                         fileViewModel.getDownloadURL().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {

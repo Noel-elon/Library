@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.library.Adapter.FileAdapter;
 import com.example.library.FileViewModel;
@@ -28,6 +29,7 @@ public class FileFragment extends Fragment {
     List<String> files;
     RecyclerView recyclerView;
     FileAdapter adapter;
+    ProgressBar progressBar;
 
     public FileFragment() {
         // Required empty public constructor
@@ -45,6 +47,8 @@ public class FileFragment extends Fragment {
 
         String levelName = getArguments().getString("Level");
         String courseName = getArguments().getString("CourseName");
+        progressBar = view.findViewById(R.id.fileProgBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         Log.d("LevelINFile frag", levelName + courseName);
 
@@ -59,6 +63,7 @@ public class FileFragment extends Fragment {
                files.add(fileName);
            }
            adapter = new FileAdapter(files);
+           progressBar.setVisibility(View.GONE);
            recyclerView.setAdapter(adapter);
            adapter.notifyDataSetChanged();
 
