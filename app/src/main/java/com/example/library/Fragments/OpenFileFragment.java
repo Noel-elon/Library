@@ -10,13 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.library.R;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class OpenFileFragment extends Fragment {
     WebView webView;
+    String url2;
 
 
     @Override
@@ -28,29 +34,31 @@ public class OpenFileFragment extends Fragment {
         webView = view.findViewById(R.id.webView);
 
         String Url = getArguments().getString("URL");
+        try {
+            url2 = URLEncoder.encode(Url, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
-        String someUrl = "http://docs.google.com/gview?embedded=true&url=";
+        String someUrl = "http://drive.google.com/viewerng/viewer?embedded=true&url=";
         Log.d("The Url", Url);
+        WebSettings settings = webView.getSettings();
 
-
-        webView.getSettings().setJavaScriptEnabled(true);
+        settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                super.onReceivedSslError(view, handler, error);
-                handler.proceed();
+               // handler.proceed();
             }
 
             @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-
-
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return false;
             }
-
         });
-        webView.loadUrl(Url);
+        webView.loadUrl(someUrl+url2);
 
 
         return view;

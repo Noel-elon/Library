@@ -1,5 +1,7 @@
 package com.example.library.Adapter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +81,13 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
                     Bundle bundle = new Bundle();
                     bundle.putString("URL", fileUrl);
 
-                    Navigation.findNavController(view).navigate(R.id.action_fileFragment_to_openFileFragment, bundle);
+                    Intent intent = new Intent();
+                    intent.setType(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(fileUrl));
+
+                    view.getContext().startActivity(intent);
+
+                    //Navigation.findNavController(view).navigate(R.id.action_fileFragment_to_openFileFragment, bundle);
                 }
             });
 

@@ -39,6 +39,8 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 import static android.app.Activity.RESULT_OK;
 
 
@@ -134,7 +136,7 @@ public class UploadFileFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         progressBar.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), "File Uploaded Succesfully", Toast.LENGTH_SHORT).show();
+                        Toasty.success(getContext(), "File Uploaded Successfully",Toast.LENGTH_SHORT,true ).show();
                         fileViewModel.getDownloadURL().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {

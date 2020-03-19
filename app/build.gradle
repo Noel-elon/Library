@@ -34,6 +34,7 @@ dependencies {
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 
     // Annotation processor
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
