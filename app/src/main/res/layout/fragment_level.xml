@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbarlev"
+        />
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layoutbg">
 
-    <FrameLayout
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -54,5 +65,8 @@
             android:elevation="4dp"
             android:src="@drawable/ic_add_black_24dp"
             app:backgroundTint="@color/colorPrimaryDark" />
-    </FrameLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </ScrollView>
+</FrameLayout>
