@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.library.FileViewModel;
 import com.example.library.R;
@@ -19,12 +21,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class SignInFragment extends Fragment {
     EditText emailEt, passwordEt;
     Button signIn;
     FileViewModel viewModel;
     TextView signUp;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +41,8 @@ public class SignInFragment extends Fragment {
         signIn = view.findViewById(R.id.signInbut);
         signUp = view.findViewById(R.id.signuptext);
         viewModel = new FileViewModel();
+        progressBar = view.findViewById(R.id.signInprog);
+        progressBar.setVisibility(View.INVISIBLE);
 
 
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -49,19 +56,26 @@ public class SignInFragment extends Fragment {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 if ((emailEt.getText() != null) && (passwordEt.getText() != null)) {
                     String logEmail = emailEt.getText().toString().trim();
                     String logPass = passwordEt.getText().toString().trim();
                     viewModel.loginUser(logEmail, logPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_levelFragment);
+                            if (task.isSuccessful()) {
+                                progressBar.setVisibility(View.GONE);
+                                Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_levelFragment);
+                            } else {
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toasty.warning(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
 
                 } else {
-
-
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toasty.warning(getContext(), "Fill all the boxes please!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

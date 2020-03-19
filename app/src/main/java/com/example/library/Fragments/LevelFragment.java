@@ -71,7 +71,7 @@ public class LevelFragment extends Fragment {
                         item2
                 ).build();
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
 
 
 

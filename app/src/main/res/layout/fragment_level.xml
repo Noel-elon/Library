@@ -9,8 +9,9 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbarlev"
-        />
+        android:background="#404040"
+        style="@style/Toolbar"
+        android:id="@+id/toolbarlev"/>
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -55,18 +56,19 @@
 
         </LinearLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:clickable="true"
-            android:elevation="4dp"
-            android:src="@drawable/ic_add_black_24dp"
-            app:backgroundTint="@color/colorPrimaryDark" />
+
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:src="@drawable/ic_add_black_24dp"
+        app:backgroundTint="@color/colorPrimaryDark" />
 </FrameLayout>
