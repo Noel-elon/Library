@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,6 +34,7 @@ public class Repository {
     private static FirebaseStorage storage = FirebaseStorage.getInstance();
     private static FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private static final String COLLECTION_NAME = "Uploads";
+    private static final String COLLECTION_USERS = "Users";
     private static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
@@ -43,6 +45,11 @@ public class Repository {
     public static CollectionReference mainColRef() {
 
         return firestore.collection(COLLECTION_NAME);
+    }
+
+    public static CollectionReference saveUser() {
+
+        return firestore.collection(COLLECTION_USERS);
     }
 
     public Task<AuthResult> registerUser(String email, String password) {
@@ -77,6 +84,15 @@ public class Repository {
                 .child(file.getFileName());
         Task<Uri> downloadUrl = downloadref.getDownloadUrl();
         return downloadUrl;
+
+    }
+
+    public void saveUsername(FirebaseUser user, String name){
+        Repository.saveUser()
+                .document(user.getUid())
+                .collection(user.getUid())
+                .document(name)
+                .set(name);
 
     }
 

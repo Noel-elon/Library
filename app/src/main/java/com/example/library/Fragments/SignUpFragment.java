@@ -1,5 +1,7 @@
 package com.example.library.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,9 +37,13 @@ public class SignUpFragment extends Fragment {
     EditText name, password, email;
     Button signUp;
     FileViewModel viewModel;
+    public String PREF_NAME = "NAME_PREF";
+    public String PREF_TAG = "NAME";
     TextView signIn;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     ProgressBar progressBar;
+    SharedPreferences preferences;
+    SharedPreferences.Editor prefEditor;
 
 
     @Override
@@ -104,6 +110,11 @@ public class SignUpFragment extends Fragment {
                     Toasty.warning(getContext(), "Fill all the boxes please!", Toast.LENGTH_SHORT).show();
 
                 }
+
+                preferences = getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                prefEditor = preferences.edit();
+                prefEditor.putString(PREF_TAG, nameString);
+
             }
         });
 

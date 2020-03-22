@@ -2,6 +2,7 @@ package com.example.library;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import android.os.Bundle;
 
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 
        // UploadFileFragment uploadFileFragment = new UploadFileFragment();

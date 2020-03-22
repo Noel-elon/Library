@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_levelFragment_to_uploadFileFragment"
             app:destination="@id/uploadFileFragment" />
+        <action
+            android:id="@+id/action_levelFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/courseFragment"

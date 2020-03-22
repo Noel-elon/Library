@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_computer_black_24dp"
+        android:title="About the app" />
+    <item
+        android:id="@+id/aboutdev"
+        android:icon="@drawable/ic_code_black_24dp"
+        android:title="About the developer" />
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_input_black_24dp"
+        android:title="Sign out" />
+
+</menu>
