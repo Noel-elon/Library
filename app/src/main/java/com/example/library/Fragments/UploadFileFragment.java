@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.OpenableColumns;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import com.example.library.R;
 import com.example.library.Repository.Repository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.storage.UploadTask;
@@ -48,7 +50,8 @@ public class UploadFileFragment extends Fragment {
     Spinner levelspinner;
     EditText courseName;
     TextView fileName;
-    Button upload, uploadFile;
+    Button upload;
+           FloatingActionButton uploadFile;
     int FILE_SELECT_CODE = 0;
     Uri uri;
     FileViewModel fileViewModel;
@@ -119,42 +122,49 @@ public class UploadFileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-                Log.d("THE URI", uri.toString());
-                Log.d("THE Name", name);
+//                Log.d("THE URI", uri.toString());
+             //   Log.d("THE Name", name);
+                String coursenames = courseName.getText().toString();
+
+                if (!(name == null || TextUtils.isEmpty(coursenames)) ) {
 
 
-                file.setFileName(name);
+                    file.setFileName(name);
 
 
-                subject.setCourseName(courseName.getText().toString());
+                    subject.setCourseName(courseName.getText().toString());
 
 
-                level.setLevel(selectedLevel);
+                    level.setLevel(selectedLevel);
 
 
-                fileViewModel.uploadFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        progressBar.setVisibility(View.GONE);
-                        Toasty.success(getContext(), "File Uploaded Successfully",Toast.LENGTH_SHORT,true ).show();
-                        fileViewModel.getDownloadURL().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Uri> task) {
-                                String url = task.getResult().toString();
-                                Log.d("THE fetched url", url);
-                                file.setFileUrl(url);
-                                subject.setFile(file);
-                                level.setSubject(subject);
+                    fileViewModel.uploadFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                            progressBar.setVisibility(View.GONE);
+                            Toasty.success(getContext(), "File Uploaded Successfully", Toast.LENGTH_SHORT, true).show();
+                            fileViewModel.getDownloadURL().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    String url = task.getResult().toString();
+                                    Log.d("THE fetched url", url);
+                                    file.setFileUrl(url);
+                                    subject.setFile(file);
+                                    level.setSubject(subject);
 
 
-                                fileViewModel.uploadLevel(level);
-                            }
-                        });
+                                    fileViewModel.uploadLevel(level);
+                                }
+                            });
 
-                    }
-                });
+                        }
+                    });
 
 
+                }else {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toasty.warning(getContext(), "Course name/File name is empty", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -88,17 +88,17 @@ public class LevelFragment extends Fragment {
         navController = Navigation.findNavController(getActivity(), R.id.fragmentNavHost);
         navigationView = view.findViewById(R.id.nav_view);
         drawerLayout = view.findViewById(R.id.drawerLayout);
-        header = view.findViewById(R.id.headerTV);
 
-        header.setText(hey + name + "!");
+        String finalString = hey + name;
 
 
         toolbar = view.findViewById(R.id.toolbarlev);
         toolbar.setBackgroundColor(getResources().getColor(R.color.layoutbg));
         activity.setSupportActionBar(toolbar);
+        toolbar.setTitle("");
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        activity.getSupportActionBar().setTitle("");
 
         // NavigationUI.setupActionBarWithNavController(activity, navController, drawerLayout);
         // NavigationUI.setupWithNavController(navigationView, navController);

@@ -114,6 +114,7 @@ public class SignUpFragment extends Fragment {
                 preferences = getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
                 prefEditor = preferences.edit();
                 prefEditor.putString(PREF_TAG, nameString);
+                prefEditor.apply();
 
             }
         });

@@ -4,13 +4,21 @@
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     android:layout_height="200dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="70dp"
+        android:src="@drawable/onlylog"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:layout_margin="8dp"
         android:id="@+id/headerTV"
-        android:text="Hey, Noel!"
+        android:text="HEY THERE!"
         android:textSize="30sp"
         android:fontFamily="@font/poppins_semibold"
         android:textColor="@color/white">
