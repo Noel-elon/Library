@@ -1,4 +1,4 @@
-package com.example.library.Fragments;
+package com.noelon.edussier.Fragments;
 
 import android.os.Bundle;
 
@@ -16,8 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.library.FileViewModel;
-import com.example.library.R;
+import com.noelon.edussier.FileViewModel;
+import com.noelon.edussier.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

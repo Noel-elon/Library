@@ -1,4 +1,4 @@
-package com.example.library.Fragments;
+package com.noelon.edussier.Fragments;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.library.R;
+import com.noelon.edussier.R;
 public class AboutApp extends Fragment {
 
 

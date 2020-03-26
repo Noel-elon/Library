@@ -1,4 +1,4 @@
-package com.example.library.Fragments;
+package com.noelon.edussier.Fragments;
 
 import android.os.Bundle;
 
@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.example.library.Adapter.FileAdapter;
-import com.example.library.FileViewModel;
-import com.example.library.R;
+import com.noelon.edussier.Adapter.FileAdapter;
+import com.noelon.edussier.FileViewModel;
+import com.noelon.edussier.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;

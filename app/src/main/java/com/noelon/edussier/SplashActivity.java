@@ -1,4 +1,4 @@
-package com.example.library;
+package com.noelon.edussier;
 
 import androidx.appcompat.app.AppCompatActivity;
 

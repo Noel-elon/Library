@@ -34,6 +34,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487437210373:android:303556e4758e44f4ee1d6c",
+        "android_client_info": {
+          "package_name": "com.noelon.edussier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487437210373-2lorp55vlhhsmlpr06kofrkhcc1ek07a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.noelon.edussier",
+            "certificate_hash": "3a1024bf4f2b7fd238095201f374aad52acbe76c"
+          }
+        },
+        {
+          "client_id": "487437210373-ef8fjklmjoih7r277q9o62149lrc9nd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_Sl85202DEOxvG72Q9rm56VLc35r_Xzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487437210373-ef8fjklmjoih7r277q9o62149lrc9nd6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

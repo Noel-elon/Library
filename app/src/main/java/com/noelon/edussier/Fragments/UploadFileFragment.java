@@ -1,6 +1,5 @@
-package com.example.library.Fragments;
+package com.noelon.edussier.Fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -25,17 +24,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.library.FileViewModel;
-import com.example.library.Models.Course;
-import com.example.library.Models.File;
-import com.example.library.Models.Level;
-import com.example.library.R;
-import com.example.library.Repository.Repository;
+import com.noelon.edussier.FileViewModel;
+import com.noelon.edussier.Models.Course;
+import com.noelon.edussier.Models.File;
+import com.noelon.edussier.Models.Level;
+import com.noelon.edussier.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;

@@ -1,25 +1,19 @@
-package com.example.library;
+package com.noelon.edussier;
 
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.library.Models.Course;
-import com.example.library.Models.File;
-import com.example.library.Models.Level;
-import com.example.library.Repository.Repository;
+import com.noelon.edussier.Models.Level;
+import com.noelon.edussier.Repository.Repository;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

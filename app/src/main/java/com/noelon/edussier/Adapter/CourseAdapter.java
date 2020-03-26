@@ -1,4 +1,4 @@
-package com.example.library.Adapter;
+package com.noelon.edussier.Adapter;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.library.Fragments.CourseFragment;
-import com.example.library.R;
+import com.noelon.edussier.Fragments.CourseFragment;
+import com.noelon.edussier.R;
 
 import java.util.List;
 

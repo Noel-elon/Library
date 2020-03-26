@@ -1,4 +1,4 @@
-package com.example.library.Fragments;
+package com.noelon.edussier.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,16 +20,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.library.FileViewModel;
-import com.example.library.R;
+import com.noelon.edussier.FileViewModel;
+import com.noelon.edussier.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.regex.Pattern;
 
 import es.dmoral.toasty.Toasty;
 

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_margin="8dp"
-            android:text="ndhhhhdvgvgvshvhsvhsvhsvscshcshcshschchcshschscscshsjbghgv ngnxghv"
+            android:text="@string/about_dev"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             android:fontFamily="@font/poppins_medium"/>

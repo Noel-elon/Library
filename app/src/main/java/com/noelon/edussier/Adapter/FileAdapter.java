@@ -1,4 +1,4 @@
-package com.example.library.Adapter;
+package com.noelon.edussier.Adapter;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,17 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.library.FileViewModel;
-import com.example.library.Models.File;
-import com.example.library.R;
+import com.noelon.edussier.FileViewModel;
+import com.noelon.edussier.Models.File;
+import com.noelon.edussier.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {

@@ -1,4 +1,4 @@
-package com.example.library.Fragments;
+package com.noelon.edussier.Fragments;
 
 import android.net.http.SslError;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.example.library.R;
+import com.noelon.edussier.R;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

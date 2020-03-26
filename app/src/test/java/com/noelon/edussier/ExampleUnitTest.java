@@ -1,4 +1,4 @@
-package com.example.library;
+package com.noelon.edussier;
 
 import org.junit.Test;
 

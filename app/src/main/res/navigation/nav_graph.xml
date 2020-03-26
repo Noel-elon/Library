@@ -8,12 +8,12 @@
 
     <fragment
         android:id="@+id/uploadFileFragment"
-        android:name="com.example.library.Fragments.UploadFileFragment"
+        android:name="com.noelon.edussier.Fragments.UploadFileFragment"
         android:label="fragment_upload_file"
         tools:layout="@layout/fragment_upload_file" />
     <fragment
         android:id="@+id/levelFragment"
-        android:name="com.example.library.Fragments.LevelFragment"
+        android:name="com.noelon.edussier.Fragments.LevelFragment"
         android:label="fragment_level"
         tools:layout="@layout/fragment_level" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/courseFragment"
-        android:name="com.example.library.Fragments.CourseFragment"
+        android:name="com.noelon.edussier.Fragments.CourseFragment"
         android:label="fragment_course"
         tools:layout="@layout/fragment_course" >
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/fileFragment"
-        android:name="com.example.library.Fragments.FileFragment"
+        android:name="com.noelon.edussier.Fragments.FileFragment"
         android:label="fragment_file"
         tools:layout="@layout/fragment_file" >
         <argument
@@ -68,12 +68,12 @@
     </fragment>
     <fragment
         android:id="@+id/openFileFragment"
-        android:name="com.example.library.Fragments.OpenFileFragment"
+        android:name="com.noelon.edussier.Fragments.OpenFileFragment"
         android:label="fragment_open_file"
         tools:layout="@layout/fragment_open_file" />
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.library.Fragments.SignUpFragment"
+        android:name="com.noelon.edussier.Fragments.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -89,7 +89,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.library.Fragments.SignInFragment"
+        android:name="com.noelon.edussier.Fragments.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -105,11 +105,11 @@
     </fragment>
     <fragment
         android:id="@+id/aboutDev"
-        android:name="com.example.library.Fragments.AboutDev"
+        android:name="com.noelon.edussier.Fragments.AboutDev"
         android:label="fragment_about_dev"
         tools:layout="@layout/fragment_about_dev" />
     <fragment
         android:id="@+id/aboutApp"
-        android:name="com.example.library.Fragments.AboutApp"
+        android:name="com.noelon.edussier.Fragments.AboutApp"
         android:label="AboutApp" />
 </navigation>

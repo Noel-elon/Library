@@ -1,4 +1,4 @@
-package com.example.library.Models;
+package com.noelon.edussier.Models;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.library;
+package com.noelon.edussier;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.library", appContext.getPackageName());
+        assertEquals("com.com.noelon.com.noelon.edussier", appContext.getPackageName());
     }
 }

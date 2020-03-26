@@ -3,6 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_app">Edussier is a file hub for students or Learners who need educational materials. This version is basically for Electrical and Electronics Engieering Students but more features will be added in time.</string>
+    <string name="about_dev">Contact: Noelnwaelugo@gmail.com</string>
 
 
 </resources>
