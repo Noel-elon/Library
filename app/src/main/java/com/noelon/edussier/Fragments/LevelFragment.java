@@ -111,10 +111,8 @@ public class LevelFragment extends Fragment {
                 switch (id) {
                     case R.id.about:
                         Navigation.findNavController(getView()).navigate(R.id.action_levelFragment_to_aboutApp);
-                        Toasty.info(getContext(), "About clicked", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.aboutdev:
-                        Toasty.info(getContext(), "About Dev clicked", Toast.LENGTH_SHORT).show();
                         Navigation.findNavController(getView()).navigate(R.id.action_levelFragment_to_aboutDev);
                         break;
                     case R.id.logout:

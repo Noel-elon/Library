@@ -136,22 +136,27 @@ public class UploadFileFragment extends Fragment {
                     fileViewModel.uploadFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            progressBar.setVisibility(View.GONE);
-                            Toasty.success(getContext(), "File Uploaded Successfully", Toast.LENGTH_SHORT, true).show();
-                            fileViewModel.getDownloadURL().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Uri> task) {
-                                    String url = task.getResult().toString();
-                                    Log.d("THE fetched url", url);
-                                    file.setFileUrl(url);
-                                    subject.setFile(file);
-                                    level.setSubject(subject);
+                            if (task.isSuccessful()) {
+                                progressBar.setVisibility(View.GONE);
+                                Toasty.success(getContext(), "File Uploaded Successfully", Toast.LENGTH_SHORT, true).show();
+                                fileViewModel.getDownloadURL().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Uri> task) {
+                                        String url = task.getResult().toString();
+                                        Log.d("THE fetched url", url);
+                                        file.setFileUrl(url);
+                                        subject.setFile(file);
+                                        level.setSubject(subject);
 
 
-                                    fileViewModel.uploadLevel(level);
-                                }
-                            });
+                                        fileViewModel.uploadLevel(level);
+                                    }
+                                });
 
+                            } else {
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toasty.error(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT, true).show();
+                            }
                         }
                     });
 
