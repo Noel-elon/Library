@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Pattern;
 
@@ -41,6 +42,7 @@ public class SignUpFragment extends Fragment {
     public String PREF_TAG = "NAME";
     TextView signIn;
     FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser user;
     ProgressBar progressBar;
     SharedPreferences preferences;
     SharedPreferences.Editor prefEditor;
@@ -75,18 +77,18 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(final View view) {
                 String emailString = email.getText().toString();
-                String nameString = name.getText().toString();
+                final String nameString = name.getText().toString();
                 String pwordString = password.getText().toString();
                 progressBar.setVisibility(View.VISIBLE);
                 if (!(TextUtils.isEmpty(emailString) || TextUtils.isEmpty(nameString) || TextUtils.isEmpty(pwordString))) {
                     if (Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches()) {
+
                         Log.d("Email & Pass:  ", emailString + pwordString);
                         viewModel.registerUser(emailString, pwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.INVISIBLE);
                                 if (task.isSuccessful()) {
-
                                     Navigation.findNavController(view).navigate(R.id.action_signUpFragment_to_levelFragment);
                                 } else {
                                     Toasty.error(getContext(), task.getException().getMessage(), Toasty.LENGTH_SHORT).show();

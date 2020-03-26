@@ -24,6 +24,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Map;
+
 
 public class Repository {
     Level level = UploadFileFragment.level;
@@ -87,11 +89,9 @@ public class Repository {
 
     }
 
-    public void saveUsername(FirebaseUser user, String name){
+    public void saveUsername(FirebaseUser user, Map name){
         Repository.saveUser()
                 .document(user.getUid())
-                .collection(user.getUid())
-                .document(name)
                 .set(name);
 
     }

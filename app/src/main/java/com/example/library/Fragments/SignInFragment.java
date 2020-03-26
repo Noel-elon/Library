@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,7 @@ public class SignInFragment extends Fragment {
             @Override
             public void onClick(final View view) {
                 progressBar.setVisibility(View.VISIBLE);
-                if ((emailEt.getText() != null) && (passwordEt.getText() != null)) {
+                if (!(TextUtils.isEmpty(emailEt.getText()) || TextUtils.isEmpty(passwordEt.getText().toString()))) {
                     String logEmail = emailEt.getText().toString().trim();
                     String logPass = passwordEt.getText().toString().trim();
                     viewModel.loginUser(logEmail, logPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

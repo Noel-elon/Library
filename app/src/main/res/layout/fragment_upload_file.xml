@@ -46,19 +46,19 @@
             android:id="@+id/courseTextInput"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp">
 
             <EditText
                 android:id="@+id/courseET"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Course name here"
                 android:inputType="text"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +85,7 @@
                 android:hint="File name goes here"
                 android:padding="4dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/uploadBut"

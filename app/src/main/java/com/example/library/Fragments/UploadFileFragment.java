@@ -137,7 +137,6 @@ public class UploadFileFragment extends Fragment {
 
                     level.setLevel(selectedLevel);
 
-
                     fileViewModel.uploadFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {

@@ -18,13 +18,24 @@
         tools:layout="@layout/fragment_level" >
         <action
             android:id="@+id/action_levelFragment_to_courseFragment"
-            app:destination="@id/courseFragment" />
+            app:destination="@id/courseFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
         <action
             android:id="@+id/action_levelFragment_to_uploadFileFragment"
-            app:destination="@id/uploadFileFragment" />
+            app:destination="@id/uploadFileFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
         <action
             android:id="@+id/action_levelFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
+        <action
+            android:id="@+id/action_levelFragment_to_aboutDev"
+            app:destination="@id/aboutDev"
+            app:enterAnim="@anim/fragment_open_enter" />
+        <action
+            android:id="@+id/action_levelFragment_to_aboutApp"
+            app:destination="@id/aboutApp"
+            app:enterAnim="@anim/fragment_open_enter" />
     </fragment>
     <fragment
         android:id="@+id/courseFragment"
@@ -33,7 +44,8 @@
         tools:layout="@layout/fragment_course" >
         <action
             android:id="@+id/action_courseFragment_to_fileFragment"
-            app:destination="@id/fileFragment" />
+            app:destination="@id/fileFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
         <argument
             android:name="levelName"
             app:argType="string" />
@@ -51,7 +63,8 @@
             app:argType="string" />
         <action
             android:id="@+id/action_fileFragment_to_openFileFragment"
-            app:destination="@id/openFileFragment" />
+            app:destination="@id/openFileFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
     </fragment>
     <fragment
         android:id="@+id/openFileFragment"
@@ -65,12 +78,14 @@
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUpFragment_to_levelFragment"
+            app:destination="@id/levelFragment"
+            app:enterAnim="@anim/fragment_open_enter"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"
-            app:destination="@id/levelFragment" />
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -79,11 +94,22 @@
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signInFragment_to_levelFragment"
+            app:destination="@id/levelFragment"
+            app:enterAnim="@anim/fragment_open_enter"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"
-            app:destination="@id/levelFragment" />
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutDev"
+        android:name="com.example.library.Fragments.AboutDev"
+        android:label="fragment_about_dev"
+        tools:layout="@layout/fragment_about_dev" />
+    <fragment
+        android:id="@+id/aboutApp"
+        android:name="com.example.library.Fragments.AboutApp"
+        android:label="AboutApp" />
 </navigation>

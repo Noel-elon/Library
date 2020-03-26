@@ -21,6 +21,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class FileViewModel extends ViewModel {
     private Repository repository = new Repository();
@@ -36,7 +37,7 @@ public class FileViewModel extends ViewModel {
         return result;
     }
 
-    public void saveUserName(FirebaseUser user, String name){
+    public void saveUserName(FirebaseUser user, Map name){
         repository.saveUsername(user, name);
     }
 

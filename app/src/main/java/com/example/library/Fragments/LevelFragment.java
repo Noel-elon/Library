@@ -20,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,10 +29,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.library.Adapter.LevelAdapter;
+import com.example.library.FileViewModel;
 import com.example.library.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -42,7 +45,9 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 
@@ -55,9 +60,11 @@ public class LevelFragment extends Fragment {
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;
     DrawerLayout drawerLayout;
-    TextView header;
+    TextView header, personName;
+    FileViewModel viewModel;
     FirebaseAuth firebaseAuth;
     NavController navController;
+    FirebaseUser user;
     SignUpFragment signUpFragment = new SignUpFragment();
     String hey = "HEY, ";
 
@@ -71,6 +78,8 @@ public class LevelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        viewModel = new FileViewModel();
 
         levels = new ArrayList<>();
 
@@ -84,12 +93,15 @@ public class LevelFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_level, container, false);
         SharedPreferences preferences = getActivity().getSharedPreferences(signUpFragment.PREF_NAME, Context.MODE_PRIVATE);
         String name = preferences.getString(signUpFragment.PREF_TAG, "");
+        Map map = new HashMap();
+        map.put(user.getUid(), name);
+        viewModel.saveUserName(user, map);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         navController = Navigation.findNavController(getActivity(), R.id.fragmentNavHost);
         navigationView = view.findViewById(R.id.nav_view);
         drawerLayout = view.findViewById(R.id.drawerLayout);
-
-        String finalString = hey + name;
+        personName = view.findViewById(R.id.personNamena);
+        personName.setText("HEY " + name.toUpperCase() + "!");
 
 
         toolbar = view.findViewById(R.id.toolbarlev);
@@ -97,12 +109,9 @@ public class LevelFragment extends Fragment {
         activity.setSupportActionBar(toolbar);
         toolbar.setTitle("");
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+        activity.getSupportActionBar().setHomeButtonEnabled(true);
         activity.getSupportActionBar().setTitle("");
 
-        // NavigationUI.setupActionBarWithNavController(activity, navController, drawerLayout);
-        // NavigationUI.setupWithNavController(navigationView, navController);
-        //navigationView.setNavigationItemSelectedListener(activity);
         drawerToggle = new ActionBarDrawerToggle(activity, drawerLayout, R.string.material_drawer_open, R.string.material_drawer_close);
         drawerToggle.syncState();
         drawerLayout.addDrawerListener(drawerToggle);
@@ -114,10 +123,12 @@ public class LevelFragment extends Fragment {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.about:
+                        Navigation.findNavController(getView()).navigate(R.id.action_levelFragment_to_aboutApp);
                         Toasty.info(getContext(), "About clicked", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.aboutdev:
                         Toasty.info(getContext(), "About Dev clicked", Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(getView()).navigate(R.id.action_levelFragment_to_aboutDev);
                         break;
                     case R.id.logout:
                         Toasty.info(getContext(), "Bella ciao!", Toast.LENGTH_SHORT).show();
@@ -151,11 +162,13 @@ public class LevelFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
+        if (item.getItemId() == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START);
+        }
+
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-
-        //if (item.getItemId() == )
         return super.onOptionsItemSelected(item);
     }
 }
