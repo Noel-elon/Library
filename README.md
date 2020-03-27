@@ -6,7 +6,7 @@ Edussier is a file hub, initially developed for students in Electrical & Electro
 to upload and doenload course materials.
 (Later updates would include other departments and leisure :) )
 
-![Screenshot_20200327-140814](https://user-images.githubusercontent.com/40652867/77786377-03ba5000-705e-11ea-9544-cab8fe7b65f6.png) ![Screenshot_20200327-140800](https://user-images.githubusercontent.com/40652867/77786484-264c6900-705e-11ea-9ddd-2a6f2404f40c.png)
+![Screenshot_20200327-140735](https://user-images.githubusercontent.com/40652867/77787528-f8682400-705f-11ea-80c5-c51e884e1028.png) ![Screenshot_20200327-140800](https://user-images.githubusercontent.com/40652867/77786484-264c6900-705e-11ea-9ddd-2a6f2404f40c.png)
 
 
 
