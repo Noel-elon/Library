@@ -139,6 +139,9 @@ public class UploadFileFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 progressBar.setVisibility(View.GONE);
                                 Toasty.success(getContext(), "File Uploaded Successfully", Toast.LENGTH_SHORT, true).show();
+                                courseName.setText("");
+                                courseName.clearFocus();
+                                fileName.setText("");
                                 fileViewModel.getDownloadURL().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Uri> task) {
