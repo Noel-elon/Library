@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -66,7 +67,7 @@ public class LevelFragment extends Fragment {
                              Bundle savedInstanceState) {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-        viewModel = new FileViewModel();
+        viewModel = ViewModelProviders.of(getActivity()).get(FileViewModel.class);
 
         levels = new ArrayList<>();
 

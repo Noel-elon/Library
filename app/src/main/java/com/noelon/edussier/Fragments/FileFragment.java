@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,7 +53,7 @@ public class FileFragment extends Fragment {
 
         Log.d("LevelINFile frag", levelName + courseName);
 
-        final FileViewModel fileViewModel = new FileViewModel();
+        final FileViewModel fileViewModel = ViewModelProviders.of(getActivity()).get(FileViewModel.class);
 
         fileViewModel.getFiles(levelName, courseName).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

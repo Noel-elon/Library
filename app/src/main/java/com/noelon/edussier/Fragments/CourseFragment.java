@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,7 +44,7 @@ public class CourseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fileViewModel = new FileViewModel();
+        fileViewModel = ViewModelProviders.of(getActivity()).get(FileViewModel.class);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_course, container, false);
         progressBar = view.findViewById(R.id.courseProgBar);

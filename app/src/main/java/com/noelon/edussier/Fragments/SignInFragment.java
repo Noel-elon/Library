@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
@@ -41,7 +42,7 @@ public class SignInFragment extends Fragment {
         passwordEt = view.findViewById(R.id.loginPasswordET);
         signIn = view.findViewById(R.id.signInbut);
         signUp = view.findViewById(R.id.signuptext);
-        viewModel = new FileViewModel();
+        viewModel = ViewModelProviders.of(getActivity()).get(FileViewModel.class);
         progressBar = view.findViewById(R.id.signInprog);
         progressBar.setVisibility(View.INVISIBLE);
 

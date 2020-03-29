@@ -22,9 +22,6 @@ public class FileViewModel extends ViewModel {
     LiveData<List<String>> courses;
     List<String> files;
 
-    public FileViewModel() {
-    }
-
 
     public Task<AuthResult> registerUser(String email, String password) {
         Task<AuthResult> result = repository.registerUser(email, password);

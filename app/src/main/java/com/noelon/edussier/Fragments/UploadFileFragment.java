@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.provider.OpenableColumns;
 import android.text.TextUtils;
@@ -75,7 +76,7 @@ public class UploadFileFragment extends Fragment {
         file = new File();
         subject = new Course();
         level = new Level();
-        fileViewModel = new FileViewModel();
+        fileViewModel = ViewModelProviders.of(getActivity()).get(FileViewModel.class);
         progressBar = rootview.findViewById(R.id.uploadProgBar);
         progressBar.setVisibility(View.INVISIBLE);
 
