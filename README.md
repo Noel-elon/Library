@@ -11,7 +11,7 @@ to upload and download course materials.
 
 
 ## Download
-Going Live soon! (watch this space)
+[Playstore](https://play.google.com/store/apps/details?id=com.noelon.edussier)
 
 ## Libraries/Tools used
 * Android studio
